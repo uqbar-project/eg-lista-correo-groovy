@@ -4,10 +4,6 @@ class StubMailSender {
 
 	def mailsEnviados
 	
-	public StubMailSender() {
-		mailsEnviados = new HashMap<String, Set<String>>()
-	}
-	
 	def send(mail) {
 		simularEnvioMail(mail.from, mail.message)
 		println("Simulación envío de mail | From: " + mail.from + " | To: " + mail.to + " | Message: " + mail.message)
@@ -27,4 +23,20 @@ class StubMailSender {
 		mensajes
 	}
 
+	/**********************************************
+	 * IMPLEMENTACION DE SINGLETON
+	 * ********************************************/
+	static instance
+
+	// TODO: Ver por qué no es verdaderamente privado
+	private StubMailSender() {
+		mailsEnviados = new HashMap<String, Set<String>>()
+	}
+
+	static def getInstance() {
+		if (!instance) {
+			instance = new StubMailSender()
+		}	
+		instance
+	}
 }

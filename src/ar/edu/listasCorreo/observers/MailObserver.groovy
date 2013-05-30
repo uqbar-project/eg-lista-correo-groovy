@@ -2,12 +2,10 @@ package ar.edu.listasCorreo.observers
 
 class MailObserver extends PostObserver {
 
-	def messageSender
-
-	public MailObserver(pMessageSender) {
-		messageSender = pMessageSender
-	}
-
+	/** 
+	 * No usamos variable message sender	  
+	 */
+	
 	def send(post) {
 		def lista = post.destino
 		lista.getMailsDestino(post).each { mailDestino ->
@@ -16,8 +14,13 @@ class MailObserver extends PostObserver {
 				titulo: "[" + lista.encabezado + "] nuevo post",
 				message: post.mensaje,
 				to: mailDestino)
-			messageSender.send(mail)
+			
+			// messageSender se reemplaza por la instancia concreta singleton
+			StubMailSender.instance.send(mail)
 		}
 	}
 	
 }
+
+
+

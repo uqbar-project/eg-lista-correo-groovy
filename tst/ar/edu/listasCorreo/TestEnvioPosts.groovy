@@ -26,7 +26,9 @@ class TestEnvioPosts {
 	Post mensajeAlumno
 	Post mensajeDodainAlumnos
 	Post mensajeDodainProfes
-	StubMailSender stubMailSender = new StubMailSender()
+	// Obtenemos la instancia del stubMailSender
+	StubMailSender stubMailSender = StubMailSender.instance
+	//
 	MalasPalabrasObserver malasPalabrasObserver = new MalasPalabrasObserver()
 
 	@Before
@@ -49,13 +51,13 @@ class TestEnvioPosts {
 		listaProfes.agregarMiembro(dodain)
 		listaProfes.agregarMiembro(nico)
 		listaProfes.agregarMiembro(deby)
-		listaProfes.agregarPostObserver(new MailObserver(stubMailSender))
+		listaProfes.agregarPostObserver(new MailObserver())
 
 		/** en la de alumnos hay alumnos y profes */
 		listaAlumnos.agregarMiembro(dodain)
 		listaAlumnos.agregarMiembro(deby)
 		listaAlumnos.agregarMiembro(fede)
-		listaAlumnos.agregarPostObserver(new MailObserver(stubMailSender))
+		listaAlumnos.agregarPostObserver(new MailObserver())
 		listaAlumnos.agregarPostObserver(malasPalabrasObserver)
 
 		mensajeAlumno = new Post(alumno, "Hola, queria preguntar que es la recursividad", listaProfes)
@@ -96,13 +98,14 @@ class TestEnvioPosts {
 	def void testEnvioPostAListaAlumnosLlegaATodosLosOtrosSuscriptos() {
 		//creacion de mock
 		def mockedMailSender = mock(MessageSender.class)
-		listaAlumnos.agregarPostObserver(new MailObserver(mockedMailSender))
+		listaAlumnos.agregarPostObserver(new MailObserver())
 
 		// un alumno envía un mensaje a la lista
 		listaAlumnos.enviar(mensajeDodainAlumnos)
 
 		//verificacion
-		//test de comportamiento, verifico que se enviaron 3 mails
+		//test de comportamiento, verifico que se enviaron 2 mails
+		// FALLA CUANDO TRABAJO CON UN SINGLETON CONCRETO
 		verify(mockedMailSender, times(2)).send(any(Mail.class))
 	}
 
