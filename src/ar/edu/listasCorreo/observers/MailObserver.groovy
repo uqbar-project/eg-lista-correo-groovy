@@ -1,12 +1,8 @@
 package ar.edu.listasCorreo.observers
 
+import ar.edu.listasCorreo.config.ServiceLocator
+
 class MailObserver extends PostObserver {
-
-	def messageSender
-
-	public MailObserver(pMessageSender) {
-		messageSender = pMessageSender
-	}
 
 	def send(post) {
 		def lista = post.destino
@@ -16,7 +12,7 @@ class MailObserver extends PostObserver {
 				titulo: "[" + lista.encabezado + "] nuevo post",
 				message: post.mensaje,
 				to: mailDestino)
-			messageSender.send(mail)
+			ServiceLocator.instance.messageSender.send(mail)
 		}
 	}
 	

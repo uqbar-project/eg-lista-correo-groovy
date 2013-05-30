@@ -1,18 +1,19 @@
 package ar.edu.listasCorreo
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import static org.mockito.Matchers.*
+import static org.mockito.Mockito.*
 
+import org.junit.Assert
+import org.junit.Before
+import org.junit.Test
+
+import ar.edu.listasCorreo.config.ServiceLocator
 import ar.edu.listasCorreo.exceptions.BusinessException
 import ar.edu.listasCorreo.observers.Mail
 import ar.edu.listasCorreo.observers.MailObserver
 import ar.edu.listasCorreo.observers.MalasPalabrasObserver
-import ar.edu.listasCorreo.observers.MessageSender;
+import ar.edu.listasCorreo.observers.MessageSender
 import ar.edu.listasCorreo.observers.StubMailSender
-
-import static org.mockito.Matchers.*
-import static org.mockito.Mockito.*
 
 class TestEnvioPosts {
 
@@ -45,17 +46,19 @@ class TestEnvioPosts {
 		alumno = new Miembro("alumno@uni.edu.ar")
 		fede = new Miembro("fede@uni.edu.ar")
 
+		ServiceLocator.instance.messageSender = stubMailSender
+		
 		/** en la lista de profes están los profes */
 		listaProfes.agregarMiembro(dodain)
 		listaProfes.agregarMiembro(nico)
 		listaProfes.agregarMiembro(deby)
-		listaProfes.agregarPostObserver(new MailObserver(stubMailSender))
+		listaProfes.agregarPostObserver(new MailObserver())
 
 		/** en la de alumnos hay alumnos y profes */
 		listaAlumnos.agregarMiembro(dodain)
 		listaAlumnos.agregarMiembro(deby)
 		listaAlumnos.agregarMiembro(fede)
-		listaAlumnos.agregarPostObserver(new MailObserver(stubMailSender))
+		listaAlumnos.agregarPostObserver(new MailObserver())
 		listaAlumnos.agregarPostObserver(malasPalabrasObserver)
 
 		mensajeAlumno = new Post(alumno, "Hola, queria preguntar que es la recursividad", listaProfes)
@@ -96,7 +99,7 @@ class TestEnvioPosts {
 	def void testEnvioPostAListaAlumnosLlegaATodosLosOtrosSuscriptos() {
 		//creacion de mock
 		def mockedMailSender = mock(MessageSender.class)
-		listaAlumnos.agregarPostObserver(new MailObserver(mockedMailSender))
+		ServiceLocator.instance.messageSender = mockedMailSender
 
 		// un alumno envía un mensaje a la lista
 		listaAlumnos.enviar(mensajeDodainAlumnos)
