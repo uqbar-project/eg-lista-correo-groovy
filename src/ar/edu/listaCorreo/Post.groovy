@@ -1,4 +1,4 @@
-package ar.edu.listasCorreo
+package ar.edu.listaCorreo
 
 class Post {
 

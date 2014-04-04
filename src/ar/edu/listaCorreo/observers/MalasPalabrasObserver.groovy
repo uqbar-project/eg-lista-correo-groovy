@@ -1,4 +1,4 @@
-package ar.edu.listasCorreo.observers
+package ar.edu.listaCorreo.observers
 
 class MalasPalabrasObserver extends PostObserver {
 
@@ -13,7 +13,7 @@ class MalasPalabrasObserver extends PostObserver {
 	}
 	
 	def tieneMalasPalabras(message) {
-		malasPalabras.any { mala -> palabras(message).contains(mala) }
+		!malasPalabras.disjoint(palabras(message))
 	}
 	
 	def agregarMalaPalabra(palabra) {
@@ -21,7 +21,7 @@ class MalasPalabrasObserver extends PostObserver {
 	}
 	
 	def palabras(message) {
-		message.split(" ")
+		message.split(" ").toList()
 	}
 	
 	def getMensajesConMalasPalabras() {

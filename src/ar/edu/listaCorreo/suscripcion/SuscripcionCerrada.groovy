@@ -1,4 +1,4 @@
-package ar.edu.listasCorreo.suscripcion
+package ar.edu.listaCorreo.suscripcion
 
 class SuscripcionCerrada {
 

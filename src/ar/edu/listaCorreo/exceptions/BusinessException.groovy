@@ -1,4 +1,4 @@
-package ar.edu.listasCorreo.exceptions
+package ar.edu.listaCorreo.exceptions
 
 class BusinessException extends Exception {
 

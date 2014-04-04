@@ -1,18 +1,18 @@
-package ar.edu.listasCorreo
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import ar.edu.listasCorreo.exceptions.BusinessException
-import ar.edu.listasCorreo.observers.Mail
-import ar.edu.listasCorreo.observers.MailObserver
-import ar.edu.listasCorreo.observers.MalasPalabrasObserver
-import ar.edu.listasCorreo.observers.MessageSender;
-import ar.edu.listasCorreo.observers.StubMailSender
+package ar.edu.listaCorreo
 
 import static org.mockito.Matchers.*
 import static org.mockito.Mockito.*
+
+import org.junit.Assert
+import org.junit.Before
+import org.junit.Test
+
+import ar.edu.listaCorreo.exceptions.BusinessException
+import ar.edu.listaCorreo.observers.Mail
+import ar.edu.listaCorreo.observers.MailObserver
+import ar.edu.listaCorreo.observers.MalasPalabrasObserver
+import ar.edu.listaCorreo.observers.MessageSender
+import ar.edu.listaCorreo.observers.StubMailSender
 
 class TestEnvioPosts {
 
