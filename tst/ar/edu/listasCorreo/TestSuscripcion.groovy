@@ -4,6 +4,9 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
+import ar.edu.listaCorreo.Lista;
+import ar.edu.listaCorreo.Miembro;
+
 class TestSuscripcion {
 
 	Lista listaProfes
