@@ -1,4 +1,4 @@
-package ar.edu.listasCorreo.observers
+package ar.edu.listaCorreo.observers
 
 class Mail {
 

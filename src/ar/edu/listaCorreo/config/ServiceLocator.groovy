@@ -1,4 +1,4 @@
-package ar.edu.listasCorreo.config
+package ar.edu.listaCorreo.config
 
 class ServiceLocator {
 

@@ -1,6 +1,7 @@
-package ar.edu.listasCorreo.observers
+package ar.edu.listaCorreo.observers
 
-import ar.edu.listasCorreo.config.ServiceLocator
+import ar.edu.listaCorreo.config.ServiceLocator;
+
 
 class MailObserver extends PostObserver {
 

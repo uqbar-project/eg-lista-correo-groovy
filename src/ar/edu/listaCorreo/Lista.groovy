@@ -1,7 +1,8 @@
-package ar.edu.listasCorreo
+package ar.edu.listaCorreo
 
-import ar.edu.listasCorreo.suscripcion.SuscripcionAbierta
-import ar.edu.listasCorreo.suscripcion.SuscripcionCerrada
+import ar.edu.listaCorreo.suscripcion.SuscripcionAbierta
+import ar.edu.listaCorreo.suscripcion.SuscripcionCerrada
+
 
 class Lista {
 	def miembros

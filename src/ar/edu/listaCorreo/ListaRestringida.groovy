@@ -1,6 +1,7 @@
-package ar.edu.listasCorreo
+package ar.edu.listaCorreo
 
-import ar.edu.listasCorreo.exceptions.BusinessException
+import ar.edu.listaCorreo.exceptions.BusinessException
+
 
 class ListaRestringida {
 
